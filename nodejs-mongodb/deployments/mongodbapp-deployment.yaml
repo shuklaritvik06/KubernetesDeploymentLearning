@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: ./kompose convert
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongodbapp
+  name: mongodbapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mongodbapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: ./kompose convert
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/nodejs-mongodb-default: "true"
+        io.kompose.service: mongodbapp
+    spec:
+      containers:
+        - env:
+            - name: MONGO_DATA_DIR
+              value: /data/db
+            - name: MONGO_LOG_DIR
+              value: /dev/null
+          image: mongo:latest
+          name: mongodbapp
+          ports:
+            - containerPort: 27017
+          resources: {}
+          volumeMounts:
+            - mountPath: /data/db
+              name: nodejs-mongodb-volume
+      restartPolicy: Always
+      volumes:
+        - name: nodejs-mongodb-volume
+          persistentVolumeClaim:
+            claimName: nodejs-mongodb-volume
+status: {}

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: ./kompose convert
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: nodejs-app
+  name: nodejs-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: nodejs-app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: ./kompose convert
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/nodejs-mongodb-default: "true"
+        io.kompose.service: nodejs-app
+    spec:
+      containers:
+        - env:
+            - name: MONGO_DB_URL
+              value: mongodb://mongodbapp:27017/user
+            - name: PORT
+              value: "80"
+          image: ritvikshukla/myimage
+          name: nodejs-app
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}

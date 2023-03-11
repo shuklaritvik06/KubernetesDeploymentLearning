@@ -1,0 +1,23 @@
+version: "3"
+services:
+  nodejs-app:
+    image: ritvikshukla/myimage
+    environment:  
+      PORT: 80
+      MONGO_DB_URL: mongodb://mongodbapp:27017/user
+    ports:
+      - 8000:80
+    depends_on:
+      - mongodbapp
+
+  mongodbapp:
+    image: mongo:latest
+    environment:
+      MONGO_DATA_DIR: /data/db
+      MONGO_LOG_DIR: /dev/null
+    volumes:
+      - nodejs-mongodb-volume:/data/db
+    ports:
+      - 27017:27017
+volumes:
+  nodejs-mongodb-volume:
