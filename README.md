@@ -325,3 +325,27 @@ ClusterIP: This is the default type of Service, which creates a virtual IP addre
 NodePort: This type of Service exposes the Service on a static port on each node in the cluster. This allows external clients to access the Service using the node's IP address and the static port number.
 
 LoadBalancer: This type of Service exposes the Service using an external load balancer. This is typically used in cloud environments where an external load balancer can be automatically provisioned.
+
+### Scaling UP
+
+```
+kubectl scale deployment <deployment-name> --replicas=<number-of-replicas>
+```
+
+### Check current ROLL OUT status
+
+```
+kubectl rollout status deployment/<deployment-name>
+```
+
+**Rollback**
+
+```
+kubectl rollout undo deployment/<deployment-name>
+```
+
+**History of Rollouts**
+
+```
+kubectl rollout history deployment/<deployment-name>
+```
