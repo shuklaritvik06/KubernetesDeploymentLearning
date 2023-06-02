@@ -1,15 +1,5 @@
 # Docker & Kubernetes
 
-- [x] Basic Node Express
-- [ ] CRUD
-- [ ] Django
-- [ ] Golang CRUD
-- [ ] React CRUD (Full Stack)
-- [ ] Spring Boot (Full Stack)
-- [ ] NestJs (API)
-- [ ] NestJs (Microservice)
-- [ ] Spring Boot (Microservice)
-
 ## Docker
 
 ```md
