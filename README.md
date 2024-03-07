@@ -47,6 +47,26 @@ services:
       MYSQL_ROOT_PASSWORD: password
 ```
 
+```
+version: "3.9"
+
+services:
+  node-app:
+    container_name: node-js-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: development
+    image: mynodejsapp
+    command: npm run dev
+    ports:
+      - 9002:9002
+    volumes:
+      - .:/app
+      - /app/node_modules
+```
+
 ```yaml
 version: "3"
 services:
