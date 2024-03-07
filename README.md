@@ -47,7 +47,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
 ```
 
-```
+```yaml
 version: "3.9"
 
 services:
